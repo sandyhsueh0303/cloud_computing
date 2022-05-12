@@ -1,0 +1,41 @@
+-- Logs begin at Mon 2022-04-11 21:14:42 UTC, end at Wed 2022-05-11 00:30:06 UTC. --
+May 10 22:51:50 241hw faasd[773]: 2022/05/10 22:51:50 - gateway
+May 10 22:51:50 241hw faasd[773]: 2022/05/10 22:51:50 - queue-worker
+May 10 22:51:50 241hw faasd[773]: Starting: nats
+May 10 22:51:50 241hw faasd[773]: Creating local directory: /var/lib/faasd/nats
+May 10 22:51:50 241hw faasd[773]: 2022/05/10 22:51:50 Running nats with user: "65534"
+May 10 22:51:50 241hw faasd[773]: 2022/05/10 22:51:50 Created container: nats
+May 10 22:51:51 241hw faasd[773]: 2022/05/10 22:51:51 nats has IP: 10.62.0.2
+May 10 22:51:51 241hw faasd[773]: 2022/05/10 22:51:51 Task: nats        Container: nats
+May 10 22:51:51 241hw faasd[773]: Starting: prometheus
+May 10 22:51:51 241hw faasd[773]: Creating local directory: /var/lib/faasd/prometheus
+May 10 22:51:51 241hw faasd[773]: 2022/05/10 22:51:51 Running prometheus with user: "65534"
+May 10 22:51:51 241hw faasd[773]: 2022/05/10 22:51:51 Created container: prometheus
+May 10 22:51:52 241hw faasd[773]: 2022/05/10 22:51:52 prometheus has IP: 10.62.0.3
+May 10 22:51:52 241hw faasd[773]: 2022/05/10 22:51:52 Task: prometheus        Container: prometheus
+May 10 22:51:52 241hw faasd[773]: Starting: basic-auth-plugin
+May 10 22:51:52 241hw faasd[773]: 2022/05/10 22:51:52 Created container: basic-auth-plugin
+May 10 22:51:52 241hw faasd[773]: 2022/05/10 22:51:52 basic-auth-plugin has IP: 10.62.0.4
+May 10 22:51:53 241hw faasd[773]: 2022/05/10 22:51:53 Task: basic-auth-plugin        Container: basic-auth-plugin
+May 10 22:51:53 241hw faasd[773]: Starting: gateway
+May 10 22:51:53 241hw faasd[773]: 2022/05/10 22:51:53 Created container: gateway
+May 10 22:51:53 241hw faasd[773]: 2022/05/10 22:51:53 gateway has IP: 10.62.0.5
+May 10 22:51:53 241hw faasd[773]: 2022/05/10 22:51:53 Task: gateway        Container: gateway
+May 10 22:51:53 241hw faasd[773]: Starting: queue-worker
+May 10 22:51:53 241hw faasd[773]: 2022/05/10 22:51:53 Created container: queue-worker
+May 10 22:51:54 241hw faasd[773]: 2022/05/10 22:51:54 queue-worker has IP: 10.62.0.6
+May 10 22:51:54 241hw faasd[773]: 2022/05/10 22:51:54 Task: queue-worker        Container: queue-worker
+May 10 22:51:54 241hw faasd[773]: 2022/05/10 22:51:54 Supervisor init done in: 3 seconds
+May 10 22:51:54 241hw faasd[773]: 2022/05/10 22:51:54 Looking up IP for: "gateway"
+May 10 22:51:54 241hw faasd[773]: 2022/05/10 22:51:54 Resolver rebuilding map
+May 10 22:51:54 241hw faasd[773]: 2022/05/10 22:51:54 Resolver: "localhost"="127.0.0.1"
+May 10 22:51:54 241hw faasd[773]: 2022/05/10 22:51:54 Resolver: "faasd-provider"="10.62.0.1"
+May 10 22:51:54 241hw faasd[773]: 2022/05/10 22:51:54 Resolver: "nats"="10.62.0.2"
+May 10 22:51:54 241hw faasd[773]: 2022/05/10 22:51:54 Resolver: "prometheus"="10.62.0.3"
+May 10 22:51:54 241hw faasd[773]: 2022/05/10 22:51:54 Resolver: "basic-auth-plugin"="10.62.0.4"
+May 10 22:51:54 241hw faasd[773]: 2022/05/10 22:51:54 Resolver: "gateway"="10.62.0.5"
+May 10 22:51:54 241hw faasd[773]: 2022/05/10 22:51:54 Resolver: "queue-worker"="10.62.0.6"
+May 10 22:51:54 241hw faasd[773]: 2022/05/10 22:51:54 Looking up IP for: "prometheus"
+May 10 22:51:54 241hw faasd[773]: 2022/05/10 22:51:54 Proxy from: 127.0.0.1:9090, to: prometheus:9090 (10.62.0.3)
+May 10 22:51:54 241hw faasd[773]: 2022/05/10 22:51:54 faasd: waiting for SIGTERM or SIGINT
+May 10 22:51:54 241hw faasd[773]: 2022/05/10 22:51:54 Proxy from: 0.0.0.0:8080, to: gateway:8080 (10.62.0.5)
