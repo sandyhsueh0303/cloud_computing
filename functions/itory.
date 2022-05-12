@@ -1,0 +1,141 @@
+[33mcommit b3f28965bf2e8f675d6e4ad079068daeba68993d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: sandyhsueh0303 <sandyhsueh0303@gmail.com>
+Date:   Thu May 12 01:39:37 2022 +0000
+
+    add hw2
+
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mnew file mode 100644[m
+[1mindex 0000000..942d901[m
+[1m--- /dev/null[m
+[1m+++ b/.gitignore[m
+[36m@@ -0,0 +1,2 @@[m
+[32m+[m[32mtemplate[m
+[32m+[m[32mbuild[m
+[1mdiff --git a/slack-interactive.yml b/slack-interactive.yml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..99609ac[m
+[1m--- /dev/null[m
+[1m+++ b/slack-interactive.yml[m
+[36m@@ -0,0 +1,11 @@[m
+[32m+[m[32mversion: 1.0[m
+[32m+[m[32mprovider:[m
+[32m+[m[32m  name: openfaas[m
+[32m+[m[32m  gateway: http://127.0.0.1:8080[m
+[32m+[m[32mfunctions:[m
+[32m+[m[32m  slack-interactive:[m
+[32m+[m[32m    lang: python[m
+[32m+[m[32m    handler: ./slack-interactive[m
+[32m+[m[32m    image: sandyhsueh/slack-interactive[m
+[32m+[m[32m    environment:[m
+[32m+[m[32m      content_type: application/json[m
+[1mdiff --git a/slack-interactive/handler.py b/slack-interactive/handler.py[m
+[1mnew file mode 100644[m
+[1mindex 0000000..90880c9[m
+[1m--- /dev/null[m
+[1m+++ b/slack-interactive/handler.py[m
+[36m@@ -0,0 +1,31 @@[m
+[32m+[m
+[32m+[m[32mimport json[m
+[32m+[m[32mimport urllib[m
+[32m+[m
+[32m+[m[32mdef handle(req):[m
+[32m+[m[32m   # urlstring = urllib.unquote(req).decode('utf8').strip('payload=')[m
+[32m+[m[32m   # response = json.loads(urlstring)[m
+[32m+[m[32m    data = {[m
+[32m+[m[32m        "attachments": [[m
+[32m+[m[32m            {[m
+[32m+[m[32m                "replace_original": True,[m
+[32m+[m[32m                "response_type": "ephemeral",[m
+[32m+[m[32m                "fallback": "Required plain-text summary of the attachment.",[m
+[32m+[m[32m                "color": "#36a64f",[m
+[32m+[m[32m                "pretext": "Ahh yeah! Great choice, COEN 241 is absolutely amazing!",[m
+[32m+[m[32m                "author_name": "",[m
+[32m+[m[32m                "author_link": "https://github.com/sandyhsueh0303/cloud_computing.git",[m
+[32m+[m[32m                "author_icon": "https://avatars.githubusercontent.com/u/49976359?v=4",[m
+[32m+[m[32m                "title": "COEN 241",[m
+[32m+[m[32m                "title_link": "https://www.scu.edu/engineering/academic-programs/department-of-computer-engineering/graduate/course-descriptions/",[m
+[32m+[m[32m                "text": "Head over to COEN 241",[m
+[32m+[m[32m                "image_url": "https://www.scu.edu/media/offices/umc/scu-brand-guidelines/visual-identity-amp-photography/visual-identity-toolkit/logos-amp-seals/Mission-Dont3.png",[m
+[32m+[m[32m                "thumb_url": "https://www.scu.edu/engineering/academic-programs/department-of-computer-engineering/graduate/course-descriptions/",[m
+[32m+[m[32m                "footer": "Slack Apps built on OpenFaas",[m
+[32m+[m[32m                "footer_icon": "https://a.slack-edge.com/45901/marketing/img/_rebrand/meta/slack_hash_256.png",[m
+[32m+[m[32m                "ts": 123456789[m
+[32m+[m[32m            }[m
+[32m+[m[32m        ][m
+[32m+[m[32m    }[m
+[32m+[m[32m    return json.dumps(data)[m
+[32m+[m
+[1mdiff --git a/slack-interactive/requirements.txt b/slack-interactive/requirements.txt[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/slack-request.yml b/slack-request.yml[m
+[1mnew file mode 100644[m
+[1mindex 0000000..782a73f[m
+[1m--- /dev/null[m
+[1m+++ b/slack-request.yml[m
+[36m@@ -0,0 +1,11 @@[m
+[32m+[m[32mprovider:[m
+[32m+[m[32m  name: openfaas[m
+[32m+[m[32m  gateway: http://127.0.0.1:8080[m
+[32m+[m[32mfunctions:[m
+[32m+[m[32m  slack-request:[m
+[32m+[m[32m    lang: python[m
+[32m+[m[32m    handler: ./slack-request[m
+[32m+[m[32m    image: sandyhsueh/slack-request[m
+[32m+[m[32m    environment:[m
+[32m+[m[32m      content_type: application/json[m
+[32m+[m
+[1mdiff --git a/slack-request/handler.py b/slack-request/handler.py[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9ac70e3[m
+[1m--- /dev/null[m
+[1m+++ b/slack-request/handler.py[m
+[36m@@ -0,0 +1,44 @@[m
+[32m+[m[32mimport json[m
+[32m+[m
+[32m+[m[32mdef handle(req):[m
+[32m+[m[32m    data = {[m
+[32m+[m[32m        "text": "Serverless Message",[m
+[32m+[m[32m        "attachments": [{[m
+[32m+[m[32m            "title": "The Awesome world of Cloud Computing! COEN 241",[m
+[32m+[m[32m            "fields": [{[m
+[32m+[m[32m                "title": "Amazing Level",[m
+[32m+[m[32m                "value": "100",[m
+[32m+[m[32m                "short": True[m
+[32m+[m[32m            }],[m
+[32m+[m[32m            "author_name": "sandyhsueh",[m
+[32m+[m[32m            "author_icon": "",[m
+[32m+[m[32m            "image_url": "https://avatars.githubusercontent.com/u/49976359?v=4"[m
+[32m+[m[32m        },[m
+[32m+[m[32m        {[m
+[32m+[m[32m            "title": "About COEN 241",[m
+[32m+[m[32m            "text": "COEN 241 is the most awesome class ever!."[m
+[32m+[m[32m        },[m
+[32m+[m[32m        {[m
+[32m+[m[32m            "fallback": "Would you recommend COEN 241 to your friends?",[m
+[32m+[m[32m            "title": "Would you recommend COEN 241 to your friends?",[m
+[32m+[m[32m            "callback_id": "response123",[m
+[32m+[m[32m            "color": "#3AA3E3",[m
+[32m+[m[32m            "attachment_type": "default",[m
+[32m+[m[32m            "actions": [[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    "name": "recommend",[m
+[32m+[m[32m                    "text": "Of Course!",[m
+[32m+[m[32m                    "type": "button",[m
+[32m+[m[32m                    "value": "recommend"[m
+[32m+[m[32m                },[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    "name": "definitely",[m
+[32m+[m[32m                    "text": "Most Definitely!",[m
+[32m+[m[32m                    "type": "button",[m
+[32m+[m[32m                    "value": "definitely"[m
+[32m+[m[32m                }[m
+[32m+[m[32m            ][m
+[32m+[m[32m        }][m
+[32m+[m[32m    }[m
+[32m+[m[32m    return json.dumps(data)[m
+[32m+[m
+[1mdiff --git a/slack-request/requirements.txt b/slack-request/requirements.txt[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
